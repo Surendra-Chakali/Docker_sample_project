@@ -1,0 +1,10 @@
+From ubuntu as build
+RUN apt-get update && apt-get install mysql-server -y && service mysql start
+RUN apt-get install nginx && service nginx start
+
+WORKDIR /app
+COPY index.html .
+
+FROM nginx:latest
+COPY --from=build /app /usr/share/nginx/html
+RUN chmod 777 index.html
