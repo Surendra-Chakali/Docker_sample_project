@@ -13,14 +13,42 @@ pipeline {
     }
 
     stage('Test') {
-      steps {
-        echo 'Test stage'
+      parallel {
+        stage('Test') {
+          steps {
+            echo 'Test stage'
+          }
+        }
+
+        stage('TC1') {
+          steps {
+            sh 'echo "Test case1 succeed"'
+          }
+        }
+
+        stage('TC2') {
+          steps {
+            sh 'echo "Test case1 succeed"'
+          }
+        }
+
       }
     }
 
     stage('Deploy') {
-      steps {
-        echo 'Deploy stage'
+      parallel {
+        stage('Deploy') {
+          steps {
+            echo 'Deploy stage'
+          }
+        }
+
+        stage('Post Deploy') {
+          steps {
+            sh 'echo "Deploy succeed"'
+          }
+        }
+
       }
     }
 
