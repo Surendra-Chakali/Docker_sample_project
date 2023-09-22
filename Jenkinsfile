@@ -14,12 +14,6 @@ pipeline {
 
     stage('Test') {
       parallel {
-        stage('Test') {
-          steps {
-            echo 'Test stage'
-          }
-        }
-
         stage('TC1') {
           steps {
             sh 'echo "Test case1 succeed"'
